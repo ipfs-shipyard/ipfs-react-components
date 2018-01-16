@@ -1,0 +1,17 @@
+.pane > .main {
+  padding-bottom: 5.25em;
+}
+
+.pane.footerless .main {
+  padding-bottom: 0;
+}
+
+.pane.translucent .footer>*:not(.always-on),
+.pane.translucent .main>*:not(.always-on) {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.light .pane {
+  background: #fff;
+}
