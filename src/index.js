@@ -19,6 +19,7 @@ export default {
   Header,
   Icon,
   IconButton,
+  InfoBlock,
   Menu,
   MenuOption,
   Pane,
