@@ -1,0 +1,16 @@
+{
+  "name": "ipfs-react-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hacdias/ipfs-react-components.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hacdias/ipfs-react-components/issues"
+  },
+  "homepage": "https://github.com/hacdias/ipfs-react-components#readme"
+}

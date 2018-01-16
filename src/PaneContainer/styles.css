@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Inter UI';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../Inter-UI-Regular.woff2?v=2.3") format("woff2"), url("../Inter-UI-Regular.woff?v=2.3") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter UI';
+  font-style: normal;
+  font-weight: 500;
+  src: url("../Inter-UI-Medium.woff2?v=2.3") format("woff2"), url("../Inter-UI-Medium.woff?v=2.3") format("woff");
+}
+
+.panes {
+  font-family: 'Inter UI', sans-serif;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  color: #FFF;
+  background: #000000;
+}
+
+.panes.light {
+  color: #212121;
+  background: #fff;
+}
