@@ -24,6 +24,8 @@ export default {
   Icon,
   IconButton,
   InfoBlock,
+  Key,
+  KeyCombo,
   Menu,
   MenuOption,
   Pane,
