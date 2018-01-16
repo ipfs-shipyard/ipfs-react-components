@@ -1,12 +1,26 @@
-export {Block} from './Block'
-export {Button} from './Button'
-export {FileBlock} from './FileBlock'
-export {Footer} from './Footer'
-export {Header} from './Header'
-export {Icon} from './Icon'
-export {IconButton} from './IconButton'
-export {InfoBlock} from './InfoBlock'
-export {Menu} from './Menu'
-export {MenuOption} from './MenuOption'
-export {Pane} from './Pane'
-export {PaneContainer} from './PaneContainer'
+import Block from './Block'
+import Button from './Button'
+import FileBlock from './FileBlock'
+import Footer from './Footer'
+import Header from './Header'
+import Icon from './Icon'
+import IconButton from './IconButton'
+import InfoBlock from './InfoBlock'
+import Menu from './Menu'
+import MenuOption from './MenuOption'
+import Pane from './Pane'
+import PaneContainer from './PaneContainer'
+
+export default {
+  Block,
+  Button,
+  FileBlock,
+  Footer,
+  Header,
+  Icon,
+  IconButton,
+  Menu,
+  MenuOption,
+  Pane,
+  PaneContainer
+}

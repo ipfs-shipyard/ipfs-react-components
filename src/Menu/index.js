@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './style.css'
+import './styles.css'
 
 export default function Menu (props) {
   return (

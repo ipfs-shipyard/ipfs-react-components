@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import logoBlack from './ipfs-logo-black.png'
-import './style.css'
+import './styles.css'
 
 /**
  * Is an Icon.

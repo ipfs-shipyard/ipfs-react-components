@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from './Button'
-import Block from './Block'
+import Button from '../Button'
+import Block from '../Block'
 
 /**
  * Is an information block.

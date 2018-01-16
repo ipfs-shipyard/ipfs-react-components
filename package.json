@@ -2,7 +2,7 @@
   "name": "ipfs-react-components",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hacdias/ipfs-react-components.git"
@@ -12,5 +12,26 @@
   "bugs": {
     "url": "https://github.com/hacdias/ipfs-react-components/issues"
   },
-  "homepage": "https://github.com/hacdias/ipfs-react-components#readme"
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "homepage": "https://github.com/hacdias/ipfs-react-components#readme",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.37",
+    "@babel/plugin-transform-react-jsx": "^7.0.0-beta.37",
+    "rollup": "^0.54.0",
+    "rollup-plugin-babel": "^4.0.0-beta.0",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-image": "^1.0.2",
+    "rollup-plugin-node-resolve": "^3.0.2",
+    "rollup-plugin-peer-deps-external": "^2.0.0",
+    "rollup-plugin-postcss": "^1.2.3"
+  },
+  "dependencies": {
+    "file-extension": "^4.0.1"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0"
+  }
 }

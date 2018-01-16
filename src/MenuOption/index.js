@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import './style.css'
+import './styles.css'
 
-import Icon from './Icon'
+import Icon from '../Icon'
 
 /**
  * Is a menu option.

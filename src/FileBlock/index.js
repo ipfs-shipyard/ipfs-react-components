@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import fileExtension from 'file-extension'
 
-import Block from './Block'
-import Button from './Button'
-import Icon from './Icon'
+import Block from '../Block'
+import Button from '../Button'
+import Icon from '../Icon'
 
-import './style.css'
+import './styles.css'
 
 /**
  * Is a File Block.
