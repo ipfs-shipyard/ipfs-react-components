@@ -1,0 +1,21 @@
+.input.textarea {
+  margin: 0 1em;
+  min-height: 35em;
+  position: relative;
+}
+
+.input.textarea textarea {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  resize: none;
+}
+
+.light .input.textarea {
+  background: rgb(241, 241, 241);
+  color: #212121;
+}

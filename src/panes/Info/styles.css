@@ -1,0 +1,21 @@
+.info .sharing {
+  padding: 0 1em 1em;
+}
+
+.info .sharing p {
+  margin: 0;
+}
+
+.info .sharing p:first-of-type {
+  font-size: 35px;
+}
+
+.info .sharing p:last-of-type {
+  font-size: 18px;
+  color: rgba(255,255,255,0.5);
+}
+
+.light .info .sharing p:last-of-type {
+  font-size: 18px;
+  color: rgba(0,0,0,0.5);
+}

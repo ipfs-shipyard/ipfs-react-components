@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Input from '../Input'
 
 import './styles.css'
 
@@ -15,9 +16,11 @@ import './styles.css'
  */
 export default function Button (props) {
   return (
-    <button onClick={props.onClick} className='button'>
-      <span>{props.text}</span>
-    </button>
+    <Input class='button'>
+      <button onClick={props.onClick}>
+        <span>{props.text}</span>
+      </button>
+    </Input>
   )
 }
 

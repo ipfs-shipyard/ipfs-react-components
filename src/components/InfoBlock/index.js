@@ -43,7 +43,6 @@ export default function InfoBlock (props) {
 
   return (
     <Block
-      onClick={props.onClick}
       unwrapped={button}
       wrapped={(
         <div>

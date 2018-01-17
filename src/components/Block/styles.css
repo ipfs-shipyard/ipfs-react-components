@@ -57,12 +57,12 @@
   justify-content: flex-end;
 }
 
-.block .button-overlay button {
+.block .button-overlay > * {
   opacity: 0;
   margin-left: .5em;
 }
 
-.block:hover .button-overlay button {
+.block:hover .button-overlay > * {
   opacity: 1;
 }
 
