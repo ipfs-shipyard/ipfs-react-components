@@ -29,7 +29,8 @@ function __$$styleInject(css, ref) {
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React = _interopDefault(require('react'));
+var React = require('react');
+var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var prettyBytes = _interopDefault(require('pretty-bytes'));
 
@@ -65,11 +66,11 @@ function Block(props) {
     className += ' clickable';
   }
 
-  return React.createElement("div", _extends({
+  return React__default.createElement("div", _extends({
     className: className
   }, props.onClick !== null && {
     onClick: props.onClick
-  }), React.createElement("div", {
+  }), React__default.createElement("div", {
     className: "wrapper"
   }, props.wrapped), props.unwrapped && props.unwrapped);
 }
@@ -94,7 +95,7 @@ function Input(props) {
     className += ' ' + props.class;
   }
 
-  return React.createElement("div", {
+  return React__default.createElement("div", {
     className: className
   }, props.children);
 }
@@ -107,11 +108,11 @@ var css$4 = ".input button,\n.input.button {\n  cursor: pointer;\n}\n\n.input.bu
 __$$styleInject(css$4);
 
 function Button(props) {
-  return React.createElement(Input, {
+  return React__default.createElement(Input, {
     "class": "button"
-  }, React.createElement("button", {
+  }, React__default.createElement("button", {
     onClick: props.onClick
-  }, React.createElement("span", null, props.text)));
+  }, React__default.createElement("span", null, props.text)));
 }
 Button.propTypes = {
   text: PropTypes.string.isRequired,
@@ -126,20 +127,20 @@ function CheckboxBlock(props) {
     props.onChange(!props.value);
   };
 
-  return React.createElement(Block, {
+  return React__default.createElement(Block, {
     onClick: _onClick,
     className: "checkbox",
-    wrapped: React.createElement("div", null, React.createElement("div", null, React.createElement("p", {
+    wrapped: React__default.createElement("div", null, React__default.createElement("div", null, React__default.createElement("p", {
       className: "label"
-    }, props.title), React.createElement("p", {
+    }, props.title), React__default.createElement("p", {
       className: "info"
-    }, props.info)), React.createElement("div", {
+    }, props.info)), React__default.createElement("div", {
       className: "right"
-    }, React.createElement("input", {
+    }, React__default.createElement("input", {
       type: "checkbox",
       onChange: _onClick,
       checked: props.value
-    }), React.createElement("span", {
+    }), React__default.createElement("span", {
       className: "checkbox"
     })))
   });
@@ -179,15 +180,15 @@ var css$8=".icon img {\n  width: 20px;\n  height: 20px;\n}\n\n@font-face {\n\tfo
 
 function Icon(props) {
   if (props.name === 'ipfs') {
-    return React.createElement("span", {
+    return React__default.createElement("span", {
       className: "icon"
-    }, React.createElement("img", {
+    }, React__default.createElement("img", {
       alt: "IPFS Logo",
       src: logoBlack
     }));
   }
 
-  return React.createElement("span", {
+  return React__default.createElement("span", {
     className: `icon ti-${props.name}`
   });
 }
@@ -222,29 +223,29 @@ function FileBlock(props) {
     props.copy(props.hash);
   };
 
-  const wrapped = React.createElement("div", null, React.createElement("div", {
+  const wrapped = React__default.createElement("div", null, React__default.createElement("div", {
     className: "icon"
-  }, React.createElement(Icon, {
+  }, React__default.createElement(Icon, {
     name: icon
-  })), React.createElement("div", null, React.createElement("p", {
+  })), React__default.createElement("div", null, React__default.createElement("p", {
     className: "label"
-  }, props.name), React.createElement("p", {
+  }, props.name), React__default.createElement("p", {
     className: "info"
-  }, props.hash)), props.uploading && React.createElement("div", {
+  }, props.hash)), props.uploading && React__default.createElement("div", {
     className: "right"
-  }, React.createElement(Icon, {
+  }, React__default.createElement(Icon, {
     name: "reload"
   })));
-  const unwrapped = React.createElement("div", {
+  const unwrapped = React__default.createElement("div", {
     className: "button-overlay"
-  }, typeof props.open === 'function' && React.createElement(Button, {
+  }, typeof props.open === 'function' && React__default.createElement(Button, {
     text: "Open",
     onClick: open
-  }), typeof props.copy === 'function' && React.createElement(Button, {
+  }), typeof props.copy === 'function' && React__default.createElement(Button, {
     text: "Copy Link",
     onClick: copy
   }));
-  return React.createElement(Block, {
+  return React__default.createElement(Block, {
     className: "file",
     wrapped: wrapped,
     unwrapped: unwrapped
@@ -294,7 +295,7 @@ var css$12 = ".footer {\n  padding: 1em;\n  height: 5.25em;\n  display: flex;\n 
 __$$styleInject(css$12);
 
 function Footer(props) {
-  return React.createElement("div", {
+  return React__default.createElement("div", {
     className: "footer"
   }, props.children);
 }
@@ -312,13 +313,13 @@ function Header(props) {
     className += ' loading';
   }
 
-  return React.createElement("div", {
+  return React__default.createElement("div", {
     className: className
-  }, React.createElement("div", null, React.createElement("p", {
+  }, React__default.createElement("div", null, React__default.createElement("p", {
     className: "title"
-  }, props.title), props.subtitle !== '' && React.createElement("p", {
+  }, props.title), props.subtitle !== '' && React__default.createElement("p", {
     className: "subtitle"
-  }, props.subtitle)), React.createElement("div", null, props.children));
+  }, props.subtitle)), React__default.createElement("div", null, props.children));
 }
 Header.propTypes = {
   title: PropTypes.string.isRequired,
@@ -336,10 +337,10 @@ var css$16 = ".button-icon {\n  line-height: 1;\n  border: 0;\n  outline: 0;\n  
 __$$styleInject(css$16);
 
 function IconButton(props) {
-  return React.createElement("button", {
+  return React__default.createElement("button", {
     onClick: props.onClick,
     className: `button-icon${props.active ? ' active' : ''}`
-  }, React.createElement(Icon, {
+  }, React__default.createElement(Icon, {
     name: props.icon
   }));
 }
@@ -358,13 +359,13 @@ function InfoBlock(props) {
   if (Array.isArray(props.info)) {
     info = [];
     props.info.forEach((element, index) => {
-      info.push(React.createElement("p", {
+      info.push(React__default.createElement("p", {
         key: index,
         className: "info"
       }, element));
     });
   } else {
-    info = React.createElement("p", {
+    info = React__default.createElement("p", {
       className: "info"
     }, props.info);
   }
@@ -373,9 +374,9 @@ function InfoBlock(props) {
 
   if (props.onClick) {
     if (props.button) {
-      button = React.createElement("div", {
+      button = React__default.createElement("div", {
         className: "button-overlay"
-      }, React.createElement(Button, {
+      }, React__default.createElement(Button, {
         text: props.buttonMessage,
         onClick: props.onClick
       }));
@@ -383,9 +384,9 @@ function InfoBlock(props) {
   }
 
   let clickable = props.onClick && !props.button;
-  return React.createElement(Block, {
+  return React__default.createElement(Block, {
     unwrapped: button,
-    wrapped: React.createElement("div", null, React.createElement("p", {
+    wrapped: React__default.createElement("div", null, React__default.createElement("p", {
       className: "label"
     }, props.title), info)
   });
@@ -407,7 +408,7 @@ var css$18 = ".key {\n  font-size: 0.8em;\n  background: rgba(255, 255, 255, 0.1
 __$$styleInject(css$18);
 
 function Key(props) {
-  return React.createElement("span", {
+  return React__default.createElement("span", {
     className: "key"
   }, props.children);
 }
@@ -418,10 +419,10 @@ Key.propTypes = {
 function KeyCombo(props) {
   const keys = [];
   props.keys.forEach((key, index) => {
-    keys.push(React.createElement(Key, {
+    keys.push(React__default.createElement(Key, {
       key: `${index}k`
     }, key));
-    keys.push(React.createElement("span", {
+    keys.push(React__default.createElement("span", {
       key: `${index}s`
     }, " + "));
   });
@@ -436,7 +437,7 @@ var css$20 = ".menu {\n  display: flex;\n  background: #292929;\n  flex-directio
 __$$styleInject(css$20);
 
 function Menu(props) {
-  return React.createElement("div", {
+  return React__default.createElement("div", {
     className: "menu"
   }, props.children);
 }
@@ -447,12 +448,12 @@ __$$styleInject(css$22);
 function MenuOption(props) {
   let className = 'menu-option';
   if (props.active) className += ' active';
-  return React.createElement("button", {
+  return React__default.createElement("button", {
     onClick: props.onClick,
     className: className
-  }, React.createElement(Icon, {
+  }, React__default.createElement(Icon, {
     name: props.icon
-  }), React.createElement("p", null, props.title));
+  }), React__default.createElement("p", null, props.title));
 }
 MenuOption.propTypes = {
   active: PropTypes.bool,
@@ -471,7 +472,7 @@ function Pane(props) {
     className += ' ' + props.class;
   }
 
-  return React.createElement("div", {
+  return React__default.createElement("div", {
     className: className
   }, props.children);
 }
@@ -492,7 +493,7 @@ function PaneContainer(props) {
     className += ' ' + props.className;
   }
 
-  return React.createElement("div", {
+  return React__default.createElement("div", {
     className: className
   }, props.children);
 }
@@ -511,9 +512,9 @@ function Popup(props) {
     className += ' ' + props.class;
   }
 
-  return React.createElement("div", {
+  return React__default.createElement("div", {
     className: "overlay"
-  }, React.createElement("div", {
+  }, React__default.createElement("div", {
     className: className
   }, props.children));
 }
@@ -531,9 +532,9 @@ function TextArea(props) {
     props.onChange(event.target.value);
   };
 
-  return React.createElement(Input, {
+  return React__default.createElement(Input, {
     "class": "textarea"
-  }, React.createElement("textarea", {
+  }, React__default.createElement("textarea", {
     value: props.value,
     onChange: onChange
   }));
@@ -572,37 +573,37 @@ function Info(props) {
     props.copy(text);
   };
 
-  return React.createElement(Pane, {
+  return React__default.createElement(Pane, {
     "class": "info"
-  }, React.createElement(Header, {
+  }, React__default.createElement(Header, {
     title: "Your Node"
-  }), React.createElement("div", {
+  }), React__default.createElement("div", {
     className: "main"
-  }, React.createElement("div", {
+  }, React__default.createElement("div", {
     className: "sharing"
-  }, React.createElement("p", null, prettyBytes(props.repo.RepoSize)), React.createElement("p", null, "Sharing ", props.repo.NumObjects, " objects")), React.createElement(InfoBlock, {
+  }, React__default.createElement("p", null, prettyBytes(props.repo.RepoSize)), React__default.createElement("p", null, "Sharing ", props.repo.NumObjects, " objects")), React__default.createElement(InfoBlock, {
     title: "Peer ID",
     info: props.node.id,
     onClick: copy(props.node.id)
-  }), React.createElement(InfoBlock, {
+  }), React__default.createElement(InfoBlock, {
     title: "Location",
     info: props.node.location
-  }), React.createElement(InfoBlock, {
+  }), React__default.createElement(InfoBlock, {
     title: "Bandwidth Used",
     info: prettyBytes(props.bw.TotalIn + props.bw.TotalOut)
-  }), React.createElement(InfoBlock, {
+  }), React__default.createElement(InfoBlock, {
     title: "Down Speed",
     info: prettyBytes(props.bw.RateIn) + '/s'
-  }), React.createElement(InfoBlock, {
+  }), React__default.createElement(InfoBlock, {
     title: "Up Speed",
     info: prettyBytes(props.bw.RateOut) + '/s'
-  }), React.createElement(InfoBlock, {
+  }), React__default.createElement(InfoBlock, {
     title: "Protocol Version",
     info: props.node.protocolVersion
-  }), React.createElement(InfoBlock, {
+  }), React__default.createElement(InfoBlock, {
     title: "Addresses",
     info: props.node.addresses
-  }), React.createElement(InfoBlock, {
+  }), React__default.createElement(InfoBlock, {
     title: "Public Key",
     info: props.node.publicKey,
     onClick: copy(props.node.publicKey)
@@ -648,8 +649,66 @@ Info.defaultProps = {
   }
 };
 
+class Peers extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: null,
+      location: 'Unknown'
+    };
+
+    this.onChangeSearch = event => {
+      this.setState({
+        search: event.target.value.toLowerCase()
+      });
+    };
+  }
+
+  render() {
+    var peers = this.props.peers;
+
+    if (this.state.search !== null && this.state.search !== '') {
+      peers = peers.filter(peer => {
+        return peer.id.toLowerCase().indexOf(this.state.search) > -1 || peer.location.formatted.toLowerCase().indexOf(this.state.search) > -1;
+      });
+    }
+
+    peers = peers.map((peer, i) => {
+      return React__default.createElement(InfoBlock, {
+        key: i,
+        title: peer.id,
+        info: peer.location.formatted
+      });
+    });
+    return React__default.createElement(Pane, {
+      "class": "peers"
+    }, React__default.createElement(Header, {
+      title: 'Earth - ' + this.props.location,
+      subtitle: this.props.peers.length + ' peers'
+    }), React__default.createElement("div", {
+      className: "main"
+    }, peers), React__default.createElement(Footer, null, React__default.createElement("div", {
+      className: "right"
+    }, React__default.createElement("input", {
+      type: "text",
+      onChange: this.onChangeSearch,
+      placeholder: "Search peer"
+    }))));
+  }
+
+}
+Peers.propTypes = {
+  location: PropTypes.string,
+  peers: PropTypes.array
+};
+Peers.defaultProps = {
+  location: 'Unknown',
+  peers: []
+};
+
 var panes = {
-  Info
+  Info,
+  Peers
 };
 
 var index = Object.assign({}, components, panes);
