@@ -1,9 +1,5 @@
-.pane > .main {
+.pane.has-footer > .main {
   padding-bottom: 5.25em;
-}
-
-.pane.footerless .main {
-  padding-bottom: 0;
 }
 
 .pane.translucent .footer>*:not(.always-on),

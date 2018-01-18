@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Footer from '../Footer'
 
 import './style.css'
 
@@ -18,6 +19,12 @@ export default function Pane (props) {
   if (props.class) {
     className += ' ' + props.class
   }
+
+  React.Children.forEach(props.children, (child) => {
+    if (child.type === Footer) {
+      className += ' has-footer'
+    }
+  })
 
   return (
     <div className={className}>

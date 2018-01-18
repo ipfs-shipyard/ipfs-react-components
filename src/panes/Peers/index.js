@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Pane from '../../components/Pane'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import InfoBlock from '../../components/InfoBlock'
+import PeerBlock from '../../components/PeerBlock'
 
 export default class Peers extends Component {
   constructor (props) {
@@ -33,7 +33,14 @@ export default class Peers extends Component {
     }
 
     peers = peers.map((peer, i) => {
-      return (<InfoBlock key={i} title={peer.id} info={peer.location.formatted} />)
+      return (
+        <PeerBlock
+          key={i}
+          onDetails={() => { console.log(peer.id) }}
+          id={peer.id}
+          location={peer.location.formatted}
+        />
+      )
     })
 
     return (

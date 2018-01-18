@@ -384,12 +384,14 @@ function InfoBlock(props) {
   }
 
   let clickable = props.onClick && !props.button;
-  return React__default.createElement(Block, {
+  return React__default.createElement(Block, _extends({}, clickable && {
+    onClick: props.onClick
+  }, {
     unwrapped: button,
     wrapped: React__default.createElement("div", null, React__default.createElement("p", {
       className: "label"
     }, props.title), info)
-  });
+  }));
 }
 InfoBlock.propTypes = {
   info: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
@@ -462,7 +464,7 @@ MenuOption.propTypes = {
   title: PropTypes.string.isRequired
 };
 
-var css$24 = ".pane > .main {\n  padding-bottom: 5.25em;\n}\n\n.pane.footerless .main {\n  padding-bottom: 0;\n}\n\n.pane.translucent .footer>*:not(.always-on),\n.pane.translucent .main>*:not(.always-on) {\n  opacity: 0.2;\n  pointer-events: none;\n}\n\n.light .pane {\n  background: #fff;\n}\n";
+var css$24 = ".pane.has-footer > .main {\n  padding-bottom: 5.25em;\n}\n\n.pane.translucent .footer>*:not(.always-on),\n.pane.translucent .main>*:not(.always-on) {\n  opacity: 0.2;\n  pointer-events: none;\n}\n\n.light .pane {\n  background: #fff;\n}\n";
 __$$styleInject(css$24);
 
 function Pane(props) {
@@ -472,6 +474,11 @@ function Pane(props) {
     className += ' ' + props.class;
   }
 
+  React__default.Children.forEach(props.children, child => {
+    if (child.type === Footer) {
+      className += ' has-footer';
+    }
+  });
   return React__default.createElement("div", {
     className: className
   }, props.children);
@@ -607,7 +614,7 @@ function Info(props) {
     title: "Public Key",
     info: props.node.publicKey,
     onClick: copy(props.node.publicKey)
-  })));
+  }), props.after !== null && props.after));
 }
 Info.propTypes = {
   copy: PropTypes.func.isRequired,
@@ -627,7 +634,8 @@ Info.propTypes = {
     TotalOut: PropTypes.numbe,
     RateIn: PropTypes.numbe,
     RateOut: PropTypes.numbe
-  })
+  }),
+  after: PropTypes.any
 };
 Info.defaultProps = {
   node: {
@@ -647,6 +655,33 @@ Info.defaultProps = {
     RateIn: 0,
     RateOut: 0
   }
+};
+
+var css$34 = ".spinner {\n  width: 40px;\n  height: 40px;\n  position: relative;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%)\n}\n\n.double-bounce1,\n.double-bounce2 {\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #FFF;\n  opacity: 0.6;\n  position: absolute;\n  top: 0;\n  left: 0;\n  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;\n  animation: sk-bounce 2.0s infinite ease-in-out;\n}\n\n.double-bounce2 {\n  -webkit-animation-delay: -1.0s;\n  animation-delay: -1.0s;\n}\n\n.light .double-bounce1,\n.light .double-bounce2 {\n  background-color: #dddddd;\n}\n\n@-webkit-keyframes sk-bounce {\n  0%,\n  100% {\n    -webkit-transform: scale(0.0)\n  }\n  50% {\n    -webkit-transform: scale(1.0)\n  }\n}\n\n@keyframes sk-bounce {\n  0%,\n  100% {\n    transform: scale(0.0);\n    -webkit-transform: scale(0.0);\n  }\n  50% {\n    transform: scale(1.0);\n    -webkit-transform: scale(1.0);\n  }\n}";
+__$$styleInject(css$34);
+
+function Loader() {
+  return React__default.createElement(Pane, null, React__default.createElement("div", {
+    className: "spinner"
+  }, React__default.createElement("div", {
+    className: "double-bounce1"
+  }), React__default.createElement("div", {
+    className: "double-bounce2"
+  })));
+}
+
+function PeerBlock(props) {
+  return React__default.createElement(InfoBlock, {
+    buttonMessage: "Details",
+    onClick: props.onDetails,
+    title: props.id,
+    info: props.location
+  });
+}
+PeerBlock.propTypes = {
+  onDetails: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired
 };
 
 class Peers extends React.Component {
@@ -674,10 +709,13 @@ class Peers extends React.Component {
     }
 
     peers = peers.map((peer, i) => {
-      return React__default.createElement(InfoBlock, {
+      return React__default.createElement(PeerBlock, {
         key: i,
-        title: peer.id,
-        info: peer.location.formatted
+        onDetails: () => {
+          console.log(peer.id);
+        },
+        id: peer.id,
+        location: peer.location.formatted
       });
     });
     return React__default.createElement(Pane, {
@@ -708,6 +746,7 @@ Peers.defaultProps = {
 
 var panes = {
   Info,
+  Loader,
   Peers
 };
 

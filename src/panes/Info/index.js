@@ -54,6 +54,8 @@ export default function Info (props) {
           title='Public Key'
           info={props.node.publicKey}
           onClick={copy(props.node.publicKey)} />
+
+        { props.after !== null &&  props.after }
       </div>
     </Pane>
   )
@@ -77,7 +79,8 @@ Info.propTypes = {
     TotalOut: PropTypes.numbe,
     RateIn: PropTypes.numbe,
     RateOut: PropTypes.numbe
-  })
+  }),
+  after: PropTypes.any
 }
 
 Info.defaultProps = {
