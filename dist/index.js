@@ -291,7 +291,7 @@ const fileTypes = {
   flv: 'video-clapper'
 };
 
-var css$12 = ".footer {\n  padding: 1em;\n  height: 5.25em;\n  display: flex;\n  background: linear-gradient(to top, #000000 0%, #000000 45%, transparent 100%);\n  position: fixed;\n  bottom: 0;\n  right: 0.5em;\n  padding-top: 3em;\n  box-sizing: border-box;\n  width: 100%;\n}\n\n.footer .right {\n  margin-left: auto;\n}\n\n.footer .button {\n  margin-left: 0.5em;\n}\n\n.footer .button,\n.footer input[type=\"text\"] {\n  font-size: 14px;\n  margin-top: -0.5em;\n}\n\n.light .footer {\n  background: linear-gradient(to top, #fff 0%, #fff 45%, transparent 100%);\n}\n";
+var css$12 = ".footer {\n  padding: 1em;\n  height: 5.25em;\n  display: flex;\n  background: linear-gradient(to top, #000000 0%, #000000 45%, transparent 100%);\n  position: fixed;\n  bottom: 0;\n  right: 0.5em;\n  padding-top: 3em;\n  box-sizing: border-box;\n  width: 100%;\n}\n\n.footer .right {\n  margin-left: auto;\n}\n\n.footer .button {\n  margin-left: 0.5em;\n}\n\n.footer .button,\n.footer .input {\n  font-size: 14px;\n  margin-top: -0.5em;\n}\n\n.light .footer {\n  background: linear-gradient(to top, #fff 0%, #fff 45%, transparent 100%);\n}\n";
 __$$styleInject(css$12);
 
 function Footer(props) {
@@ -404,6 +404,27 @@ InfoBlock.defaultProps = {
   button: true,
   buttonMessage: 'Copy',
   onClick: null
+};
+
+function InputText(props) {
+  const onChange = event => {
+    event.preventDefault();
+    props.onChange(event.target.value);
+  };
+
+  return React__default.createElement(Input, {
+    "class": "text"
+  }, React__default.createElement("input", {
+    type: "text",
+    value: props.value,
+    onChange: onChange,
+    placeholder: props.placeholder
+  }));
+}
+InputText.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string
 };
 
 var css$18 = ".key {\n  font-size: 0.8em;\n  background: rgba(255, 255, 255, 0.1);\n  border-radius: 0.2em;\n  padding: 0 0.2em;\n}\n\n.light .key {\n  background: #eee;\n}\n";
@@ -562,6 +583,7 @@ var components = {
   IconButton,
   InfoBlock,
   Input,
+  InputText,
   Key,
   KeyCombo,
   Menu,
@@ -688,13 +710,13 @@ class Peers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: null,
+      search: '',
       location: 'Unknown'
     };
 
-    this.onChangeSearch = event => {
+    this.onChangeSearch = value => {
       this.setState({
-        search: event.target.value.toLowerCase()
+        search: value.toLowerCase()
       });
     };
   }
@@ -727,9 +749,9 @@ class Peers extends React.Component {
       className: "main"
     }, peers), React__default.createElement(Footer, null, React__default.createElement("div", {
       className: "right"
-    }, React__default.createElement("input", {
-      type: "text",
+    }, React__default.createElement(InputText, {
       onChange: this.onChangeSearch,
+      value: this.state.search,
       placeholder: "Search peer"
     }))));
   }

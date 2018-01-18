@@ -5,19 +5,20 @@ import Pane from '../../components/Pane'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import PeerBlock from '../../components/PeerBlock'
+import InputText from '../../components/InputText'
 
 export default class Peers extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      search: null,
+      search: '',
       location: 'Unknown'
     }
 
-    this.onChangeSearch = event => {
+    this.onChangeSearch = value => {
       this.setState({
-        search: event.target.value.toLowerCase()
+        search: value.toLowerCase()
       })
     }
   }
@@ -55,7 +56,11 @@ export default class Peers extends Component {
 
         <Footer>
           <div className='right'>
-            <input type='text' onChange={this.onChangeSearch} placeholder='Search peer' />
+            <InputText
+              onChange={this.onChangeSearch}
+              value={this.state.search}
+              placeholder='Search peer'
+              />
           </div>
         </Footer>
       </Pane>

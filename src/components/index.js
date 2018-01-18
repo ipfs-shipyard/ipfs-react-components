@@ -8,6 +8,7 @@ import Icon from './Icon'
 import IconButton from './IconButton'
 import InfoBlock from './InfoBlock'
 import Input from './Input'
+import InputText from './InputText'
 import Key from './Key'
 import KeyCombo from './KeyCombo'
 import Menu from './Menu'
@@ -28,6 +29,7 @@ export default {
   IconButton,
   InfoBlock,
   Input,
+  InputText,
   Key,
   KeyCombo,
   Menu,
