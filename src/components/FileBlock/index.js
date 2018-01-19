@@ -10,6 +10,14 @@ import IconButton from '../IconButton'
 
 import './styles.css'
 
+const wrapper = (fn) => {
+  return (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    fn()
+  }
+}
+
 /**
  * Is a File Block.
  *
@@ -39,8 +47,8 @@ export default function FileBlock (props) {
     }
   }
 
-  const copy = (event) => props.copy(props.hash)
-  const remove = (event) => props.remove(props.name)
+  const copy = wrapper(() => {props.copy(props.hash)})
+  const remove = wrapper(() => {props.remove(props.name)})
 
   const wrapped = (
     <div>
