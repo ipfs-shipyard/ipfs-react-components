@@ -287,6 +287,13 @@ IconButton.defaultProps = {
 var css$12 = ".block.file > div > div{\n  display: flex;\n  align-items: center;\n}\n\n.block.file > div > div div:nth-child(2) {\n  overflow: hidden;\n}\n\n.block.file  .icon {\n  font-size: 1.6em;\n  margin-right: 0.35em;\n  color: rgba(255, 255, 255, 0.5)\n}\n\n.light .block.file .icon {\n  color: rgba(0, 0, 0, 0.5)\n}\n";
 __$$styleInject(css$12);
 
+const wrapper = fn => {
+  return event => {
+    event.preventDefault();
+    event.stopPropagation();
+    fn();
+  };
+};
 /**
  * Is a File Block.
  *
@@ -298,6 +305,7 @@ __$$styleInject(css$12);
  *
  * @return {ReactElement}
  */
+
 
 function FileBlock(props) {
   const extension = fileExtension(props.name);
@@ -317,10 +325,12 @@ function FileBlock(props) {
     }
   };
 
-  const copy = event => props.copy(props.hash);
-
-  const remove = event => props.remove(props.name);
-
+  const copy = wrapper(() => {
+    props.copy(props.hash);
+  });
+  const remove = wrapper(() => {
+    props.remove(props.name);
+  });
   const wrapped = React__default.createElement("div", null, React__default.createElement("div", {
     className: "icon"
   }, React__default.createElement(Icon, {
