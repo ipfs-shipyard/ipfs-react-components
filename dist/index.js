@@ -428,8 +428,8 @@ __$$styleInject(css$16);
  *
  * @param {Object} props
  *
- * @prop {String} title       - The title of the pane
- * @prop {String} [subtitle]  - Subtitle of the pane
+ * @prop {String|Node} title       - The title of the pane
+ * @prop {String|Node} [subtitle]  - Subtitle of the pane
  * @prop {Node}   [children]  - Header children (e.g.: buttons)
  * @prop {Bool}   [loading]   - Show a loading animation
  *
@@ -452,10 +452,10 @@ function Header(props) {
   }, props.subtitle)), React__default.createElement("div", null, props.children));
 }
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOf([PropTypes.string, PropTypes.children, PropTypes.arrayOf(PropTypes.children)]).isRequired,
+  subtitle: PropTypes.oneOf([PropTypes.string, PropTypes.children, PropTypes.arrayOf(PropTypes.children)]).isRequired,
   children: PropTypes.node,
-  loading: PropTypes.bool,
-  subtitle: PropTypes.string
+  loading: PropTypes.bool
 };
 Header.defaultProps = {
   title: '',
