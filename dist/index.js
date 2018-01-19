@@ -252,8 +252,40 @@ Icon.propTypes = {
   name: PropTypes.string.isRequired
 };
 
-var css$10 = ".block.file > div > div{\n  display: flex;\n  align-items: center;\n}\n\n.block.file > div > div div:nth-child(2) {\n  overflow: hidden;\n}\n\n.block.file  .icon {\n  font-size: 1.6em;\n  margin-right: 0.35em;\n  color: rgba(255, 255, 255, 0.5)\n}\n\n.light .block.file .icon {\n  color: rgba(0, 0, 0, 0.5)\n}\n";
+var css$10 = ".button-icon {\n  line-height: 1;\n  border: 0;\n  outline: 0;\n  padding: 0;\n  background: transparent;\n  color: rgba(255, 255, 255, 0.4);\n  cursor: pointer;\n  margin-left: 0.5em;\n  transition: .2s ease all;\n}\n\n.button-icon.active,\n.button-icon:hover {\n  color: rgba(255, 255, 255, 0.6);\n}\n\n.light .button-icon {\n  color: rgba(0, 0, 0, 0.5);\n}\n\n.light .button-icon.active,\n.light .button-icon:hover {\n  color: rgba(0, 0, 0, 0.8);\n}\n";
 __$$styleInject(css$10);
+
+/**
+ * Is a Button with an Icon.
+ *
+ * @param {Object} props
+ *
+ * @prop {String}   icon      - icon's name
+ * @prop {Function} onClick   - function to be triggered when clicking the button
+ * @prop {Bool}     [active]  - sets the state of the button
+ *
+ * @return {ReactElement}
+ */
+
+function IconButton(props) {
+  return React__default.createElement("button", {
+    onClick: props.onClick,
+    className: `button-icon${props.active ? ' active' : ''}`
+  }, React__default.createElement(Icon, {
+    name: props.icon
+  }));
+}
+IconButton.propTypes = {
+  icon: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  active: PropTypes.bool
+};
+IconButton.defaultProps = {
+  active: false
+};
+
+var css$12 = ".block.file > div > div{\n  display: flex;\n  align-items: center;\n}\n\n.block.file > div > div div:nth-child(2) {\n  overflow: hidden;\n}\n\n.block.file  .icon {\n  font-size: 1.6em;\n  margin-right: 0.35em;\n  color: rgba(255, 255, 255, 0.5)\n}\n\n.light .block.file .icon {\n  color: rgba(0, 0, 0, 0.5)\n}\n";
+__$$styleInject(css$12);
 
 /**
  * Is a File Block.
@@ -285,11 +317,9 @@ function FileBlock(props) {
     }
   };
 
-  const copy = event => {
-    event.stopPropagation();
-    event.preventDefault();
-    props.copy(props.hash);
-  };
+  const copy = event => props.copy(props.hash);
+
+  const remove = event => props.remove(props.name);
 
   const wrapped = React__default.createElement("div", null, React__default.createElement("div", {
     className: "icon"
@@ -299,33 +329,32 @@ function FileBlock(props) {
     className: "label"
   }, props.name), React__default.createElement("p", {
     className: "info"
-  }, props.hash)), props.uploading && React__default.createElement("div", {
-    className: "right"
-  }, React__default.createElement(Icon, {
-    name: "reload"
-  })));
+  }, prettyBytes(props.size), " | ", props.hash)));
   const unwrapped = React__default.createElement("div", {
     className: "button-overlay"
-  }, typeof props.open === 'function' && React__default.createElement(Button, {
-    text: "Open",
-    onClick: open
-  }), typeof props.copy === 'function' && React__default.createElement(Button, {
-    text: "Copy Link",
+  }, typeof props.copy === 'function' && React__default.createElement(IconButton, {
+    icon: "clipboard",
     onClick: copy
+  }), typeof props.remove === 'function' && React__default.createElement(IconButton, {
+    icon: "trash",
+    onClick: remove
   }));
-  return React__default.createElement(Block, {
+  return React__default.createElement(Block, _extends({}, props.open !== null && {
+    onClick: open
+  }, {
     className: "file",
     wrapped: wrapped,
     unwrapped: unwrapped
-  });
+  }));
 }
 FileBlock.propTypes = {
   name: PropTypes.string.isRequired,
   hash: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
   navigate: PropTypes.func,
   copy: PropTypes.func,
-  type: PropTypes.string,
-  uploading: PropTypes.bool
+  remove: PropTypes.func,
+  type: PropTypes.string
 };
 FileBlock.defaultProps = {
   type: 'file'
@@ -359,8 +388,8 @@ const fileTypes = {
   flv: 'video-clapper'
 };
 
-var css$12 = ".footer {\n  padding: 1em;\n  height: 5.25em;\n  display: flex;\n  background: linear-gradient(to top, #000000 0%, #000000 45%, transparent 100%);\n  position: fixed;\n  bottom: 0;\n  right: 0.5em;\n  padding-top: 3em;\n  box-sizing: border-box;\n  width: 100%;\n}\n\n.footer .right {\n  margin-left: auto;\n}\n\n.footer .button {\n  margin-left: 0.5em;\n}\n\n.footer .button,\n.footer .input {\n  font-size: 14px;\n  margin-top: -0.5em;\n}\n\n.light .footer {\n  background: linear-gradient(to top, #fff 0%, #fff 45%, transparent 100%);\n}\n";
-__$$styleInject(css$12);
+var css$14 = ".footer {\n  padding: 1em;\n  height: 5.25em;\n  display: flex;\n  background: linear-gradient(to top, #000000 0%, #000000 45%, transparent 100%);\n  position: fixed;\n  bottom: 0;\n  right: 0.5em;\n  padding-top: 3em;\n  box-sizing: border-box;\n  width: 100%;\n}\n\n.footer .right {\n  margin-left: auto;\n}\n\n.footer .button {\n  margin-left: 0.5em;\n}\n\n.footer .button,\n.footer .input {\n  font-size: 14px;\n  margin-top: -0.5em;\n}\n\n.light .footer {\n  background: linear-gradient(to top, #fff 0%, #fff 45%, transparent 100%);\n}\n";
+__$$styleInject(css$14);
 
 /**
  * Is a Pane's Footer.
@@ -381,8 +410,8 @@ Footer.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-var css$14 = ".header {\n  padding: 1em;\n  display: flex;\n  position: relative;\n}\n\n.header .title {\n  font-size: 18px;\n  color: rgba(255, 255, 255, 0.5);\n  margin: 0\n}\n\n.header .subtitle {\n  margin: 0;\n  font-size: 35px;\n}\n\n.header>div:first-child {\n  margin-right: auto;\n}\n\n.header.loading:after{\n  display: block;\n  position: absolute;\n  content: \"\";\n  left: -20em;\n  width: 20em;\n  height: 4px;\n  bottom: 0;\n  background-color: #FFEB3B;\n  animation: loading 2s linear infinite;\n}\n\n.light .header .title {\n  color: rgba(0, 0, 0, 0.5);\n}\n";
-__$$styleInject(css$14);
+var css$16 = ".header {\n  padding: 1em;\n  display: flex;\n  position: relative;\n}\n\n.header .title {\n  font-size: 18px;\n  color: rgba(255, 255, 255, 0.5);\n  margin: 0\n}\n\n.header .subtitle {\n  margin: 0;\n  font-size: 35px;\n}\n\n.header>div:first-child {\n  margin-right: auto;\n}\n\n.header.loading:after{\n  display: block;\n  position: absolute;\n  content: \"\";\n  left: -20em;\n  width: 20em;\n  height: 4px;\n  bottom: 0;\n  background-color: #FFEB3B;\n  animation: loading 2s linear infinite;\n}\n\n.light .header .title {\n  color: rgba(0, 0, 0, 0.5);\n}\n";
+__$$styleInject(css$16);
 
 /**
  * Is a Pane's Header.
@@ -422,38 +451,6 @@ Header.defaultProps = {
   title: '',
   loading: false,
   subtitle: ''
-};
-
-var css$16 = ".button-icon {\n  line-height: 1;\n  border: 0;\n  outline: 0;\n  padding: 0;\n  background: transparent;\n  color: rgba(255, 255, 255, 0.4);\n  cursor: pointer;\n  margin-left: 0.5em;\n  transition: .2s ease all;\n}\n\n.button-icon.active,\n.button-icon:hover {\n  color: rgba(255, 255, 255, 0.6);\n}\n\n.light .button-icon {\n  color: rgba(0, 0, 0, 0.5);\n}\n\n.light .button-icon.active,\n.light .button-icon:hover {\n  color: rgba(0, 0, 0, 0.8);\n}\n";
-__$$styleInject(css$16);
-
-/**
- * Is a Button with an Icon.
- *
- * @param {Object} props
- *
- * @prop {String}   icon      - icon's name
- * @prop {Function} onClick   - function to be triggered when clicking the button
- * @prop {Bool}     [active]  - sets the state of the button
- *
- * @return {ReactElement}
- */
-
-function IconButton(props) {
-  return React__default.createElement("button", {
-    onClick: props.onClick,
-    className: `button-icon${props.active ? ' active' : ''}`
-  }, React__default.createElement(Icon, {
-    name: props.icon
-  }));
-}
-IconButton.propTypes = {
-  icon: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  active: PropTypes.bool
-};
-IconButton.defaultProps = {
-  active: false
 };
 
 /**
