@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import fileExtension from 'file-extension'
+import prettyBytes from 'pretty-bytes'
 
 import Block from '../Block'
 import Button from '../Button'
 import Icon from '../Icon'
+import IconButton from '../IconButton'
 
 import './styles.css'
 
@@ -37,11 +39,8 @@ export default function FileBlock (props) {
     }
   }
 
-  const copy = (event) => {
-    event.stopPropagation()
-    event.preventDefault()
-    props.copy(props.hash)
-  }
+  const copy = (event) => props.copy(props.hash)
+  const remove = (event) => props.remove(props.name)
 
   const wrapped = (
     <div>
@@ -50,39 +49,39 @@ export default function FileBlock (props) {
       </div>
       <div>
         <p className='label'>{props.name}</p>
-        <p className='info'>{props.hash}</p>
+        <p className='info'>{prettyBytes(props.size)} | {props.hash}</p>
       </div>
-      { props.uploading &&
-        <div className='right'>
-          <Icon name='reload' />
-        </div>
-      }
     </div>
   )
   
   const unwrapped = (
     <div className='button-overlay'>
-      { typeof props.open === 'function' &&
-        <Button text='Open' onClick={open} />
-      }
       { typeof props.copy === 'function' &&
-        <Button text='Copy Link' onClick={copy} />
+        <IconButton icon='clipboard' onClick={copy} />
+      }
+      { typeof props.remove === 'function' &&
+        <IconButton icon='trash' onClick={remove} />
       }
     </div>
   )
 
   return (
-    <Block className='file' wrapped={wrapped} unwrapped={unwrapped} />
+    <Block
+      {...props.open !== null && { onClick: open }}
+      className='file'
+      wrapped={wrapped}
+      unwrapped={unwrapped} />
   )
 }
 
 FileBlock.propTypes = {
   name: PropTypes.string.isRequired,
   hash: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
   navigate: PropTypes.func,
   copy: PropTypes.func,
-  type: PropTypes.string,
-  uploading: PropTypes.bool
+  remove: PropTypes.func,
+  type: PropTypes.string
 }
 
 FileBlock.defaultProps = {
