@@ -1,4 +1,5 @@
 import Block from './Block'
+import Breadcrumbs from './Breadcrumbs'
 import Button from './Button'
 import CheckboxBlock from './CheckboxBlock'
 import FileBlock from './FileBlock'
@@ -20,6 +21,7 @@ import TextArea from './TextArea'
 
 export default {
   Block,
+  Breadcrumbs,
   Button,
   CheckboxBlock,
   FileBlock,
