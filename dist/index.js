@@ -452,8 +452,8 @@ function Header(props) {
   }, props.subtitle)), React__default.createElement("div", null, props.children));
 }
 Header.propTypes = {
-  title: PropTypes.oneOf([PropTypes.string, PropTypes.children, PropTypes.arrayOf(PropTypes.children)]).isRequired,
-  subtitle: PropTypes.oneOf([PropTypes.string, PropTypes.children, PropTypes.arrayOf(PropTypes.children)]).isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.children, PropTypes.arrayOf(PropTypes.children)]).isRequired,
+  subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.children, PropTypes.arrayOf(PropTypes.children)]).isRequired,
   children: PropTypes.node,
   loading: PropTypes.bool
 };

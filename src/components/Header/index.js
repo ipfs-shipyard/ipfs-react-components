@@ -37,12 +37,12 @@ export default function Header (props) {
 }
 
 Header.propTypes = {
-  title: PropTypes.oneOf([
+  title: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.children,
     PropTypes.arrayOf(PropTypes.children)
   ]).isRequired,
-  subtitle: PropTypes.oneOf([
+  subtitle: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.children,
     PropTypes.arrayOf(PropTypes.children)
