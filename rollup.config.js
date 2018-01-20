@@ -7,28 +7,34 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
 import postcssURL from 'postcss-url'
 
+import pkg from './package.json'
+
 export default {
-  entry: 'src/index.js',
+  input: 'src/index.js',
   output: {
-    file: 'dist/index.js',
-    format: 'cjs',
+    file: pkg.main,
+    format: 'cjs'
   },
   plugins: [
     peerDepsExternal(),
-    commonjs({
-      include: 'node_modules/**'
-    }),
-    resolve(),
     postcss({
       plugins: [
         postcssURL({
           url: 'inline'
         })
       ]
+      // modules: true,
+      // extract: 'dist/styles.css'
     }),
+    commonjs({
+      include: 'node_modules/**'
+    }),
+    resolve(),
     url({
       limit: 999999999999
     }),
-    babel()
+    babel({
+      exclude: 'node_modules/**'
+    })
   ]
 }

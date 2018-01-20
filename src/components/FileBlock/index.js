@@ -32,7 +32,7 @@ const wrapper = (fn) => {
 export default function FileBlock (props) {
   const extension = fileExtension(props.name)
   let icon = 'file'
-  
+
   if (props.type === 'directory') {
     icon = 'folder'
   } else if (fileTypes[extension]) {
@@ -47,8 +47,8 @@ export default function FileBlock (props) {
     }
   }
 
-  const copy = wrapper(() => {props.copy(props.hash)})
-  const remove = wrapper(() => {props.remove(props.name)})
+  const copy = wrapper(() => { props.copy(props.hash) })
+  const remove = wrapper(() => { props.remove(props.name) })
 
   const wrapped = (
     <div>
@@ -61,7 +61,7 @@ export default function FileBlock (props) {
       </div>
     </div>
   )
-  
+
   const unwrapped = (
     <div className='button-overlay'>
       { typeof props.copy === 'function' &&

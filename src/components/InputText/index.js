@@ -8,7 +8,7 @@ export default function InputText (props) {
     event.preventDefault()
     props.onChange(event.target.value)
   }
-  
+
   return (
     <Input class='text'>
       <input

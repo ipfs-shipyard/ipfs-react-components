@@ -55,7 +55,7 @@ export default function Info (props) {
           info={props.node.publicKey}
           onClick={copy(props.node.publicKey)} />
 
-        { props.after !== null &&  props.after }
+        { props.after !== null && props.after }
       </div>
     </Pane>
   )

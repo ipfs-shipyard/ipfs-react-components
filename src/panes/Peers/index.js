@@ -60,7 +60,7 @@ export default class Peers extends Component {
               onChange={this.onChangeSearch}
               value={this.state.search}
               placeholder='Search peer'
-              />
+            />
           </div>
         </Footer>
       </Pane>

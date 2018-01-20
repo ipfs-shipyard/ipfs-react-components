@@ -50,7 +50,7 @@ export default function InfoBlock (props) {
           <p className='label'>{props.title}</p>
           {info}
         </div>
-      )}/>
+      )} />
   )
 }
 

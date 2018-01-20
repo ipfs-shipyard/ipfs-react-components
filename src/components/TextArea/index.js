@@ -9,7 +9,7 @@ export default function TextArea (props) {
     event.preventDefault()
     props.onChange(event.target.value)
   }
-  
+
   return (
     <Input class='textarea'>
       <textarea value={props.value} onChange={onChange} />
